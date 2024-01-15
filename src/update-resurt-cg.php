@@ -11,16 +11,17 @@
 </head>
 
 <body>
-    <h1>Todo登録完了画面だよー</h1>
+    <h1>Todo優先度更新画面だよー</h1>
     <?php require 'select.php'; ?>
     <hr>
     <?php
     $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->prepare('insert into Todo(name, create_date, category_id) values(?,current_date,?)');
-    if ($sql->execute([$_POST['name'], $_POST['importance']])) {
-        echo 'Todoを追加しました。';
+    $sql = $pdo->prepare('update category set category_name=?, category_num=? where category_id=?');
+
+    if ($sql->execute([$_POST['id'], $_POST['name'], $_POST['num']])) {
+        echo 'Todoを更新しました。';
     } else {
-        echo 'Todoの追加に失敗しました。';
+        echo ' Todoの更新に失敗しました。';
     }
     ?>
 </body>

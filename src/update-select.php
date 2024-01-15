@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <h1>Todo削除画面だよー</h1>
+    <h1>Todo更新画面だよー</h1>
     <?php require 'select.php'; ?>
     <hr>
-    <form action="delete-result.php" method="post">
+    <form action="update.php" method="post">
         <table>
             <tr>
                 <td></td>
@@ -33,7 +33,7 @@
 
             foreach ($pdo->query($sql) as $row) {
                 echo '<tr>';
-                echo '<td><input type="checkbox" name="todo[]" value=', $row['id'], '></td>';
+                echo '<td><input type="radio" name="upd" value="', $row['id'], '"></td>';
                 echo '<td>', $row['id'], '</td>';
                 echo '<td>', $row['name'], '</td>';
                 echo '<td>', $row['create_date'], '</td>';
@@ -44,7 +44,7 @@
             }
             ?>
         </table>
-        <button type="submit" name="Delete">削除する</button>
+        <button type="submit">更新</button>
     </form>
 </body>
 
