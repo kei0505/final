@@ -2,25 +2,28 @@
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Todo</title>
 </head>
+
 <body>
+    <h1>Todo優先度更新画面だよー</h1>
+    <?php require 'select.php'; ?>
+    <hr>
     <?php
-    $i = $_POST['importance'];
-    $star;
-    for($j=0; $j<$i; $j++) {
-        $star += "☆";
-    }
     $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->prepare('insert into category set category_name=?, category_num=?');
-    if ($sql->execute([$star,$_POST['importance']])) {
+    $sql = $pdo->prepare('update category set category_name=?, category_num=? where category_id=?');
+
+    if ($sql->execute([$_POST['name'], $_POST['num'], $_POST['id'], ])) {
         echo 'Todoを更新しました。';
     } else {
         echo ' Todoの更新に失敗しました。';
     }
     ?>
 </body>
+
 </html>

@@ -16,9 +16,18 @@
     <hr>
     <?php
     $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->prepare('update Todo set name=?, update_date=current_date, category_id=? where id=?');
+    $categoryNum = $_POST['importance'];
+    $findCategoryIdQuery = "SELECT category_id FROM category WHERE category_num = ?";
+    $categoryIdStatement = $pdo->prepare($findCategoryIdQuery);
+    $categoryIdStatement->execute([$categoryNum]);
+    $categoryId = $categoryIdStatement->fetchColumn();
 
-    if ($sql->execute([$_POST['name'], $_POST['importance'], $_POST['id']])) {
+    $insertTodoQuery = 'UPDATE Todo SET name=?, update_date=CURDATE(), category_id=? WHERE id=?';  // 修正したクエリ
+    
+    $insertTodoStatement = $pdo->prepare($insertTodoQuery);
+
+    // 修正：executeメソッドに渡す配列の要素数を合わせる
+    if ($insertTodoStatement->execute([$_POST['name'], $categoryId, $_POST['id']])) {
         echo 'Todoを更新しました。';
     } else {
         echo ' Todoの更新に失敗しました。';

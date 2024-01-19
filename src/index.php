@@ -13,6 +13,8 @@
     <h1>Todoアプリだよー</h1>
     <?php require 'select.php'; ?>
     <hr>
+    <h2>※カテゴリーを優先度に変更しました！</h2>
+    <h2>※DBのテーブルはcategoryのまま作成しています！</h2>
 </body>
 
 </html>

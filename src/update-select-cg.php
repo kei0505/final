@@ -30,14 +30,16 @@
                 echo '<tr>';
                 echo '<td><input type="radio" name="upd" value="', $row['category_id'], '"></td>';
                 echo '<td>', $row['category_id'], '</td>';
-                echo '<td>', $row['category_name'], '</td>';
+                echo '<td class="star">', $row['category_name'], '</td>';
                 echo '<td>', $row['category_num'], '</td>';
                 echo '</tr>';
                 echo "\n";
             }
             ?>
         </table>
-        <button type="submit">更新</button>
+        <div class="btn">
+            <button type="submit" class="btn1">更新</button>
+        </div>
     </form>
 </body>
 

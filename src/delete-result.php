@@ -24,11 +24,11 @@
         foreach ($_POST['todo'] as $todoId) {
 
             if ($sql->execute([$todoId])) {
-                echo 'Todoを削除しました。<br>';
             } else {
                 echo 'Todoの削除に失敗しました。<br>';
             }
         }
+        echo 'Todoを削除しました。<br>';
     } else {
         echo '削除するTodoが選択されていません。';
     }

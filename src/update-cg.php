@@ -32,7 +32,7 @@
                     echo $row['category_id'];
                     echo '<input type="hidden" name="id" value="', $row['category_id'], '">';
                     echo '</td>';
-                    echo '<td>';
+                    echo '<td class="star">';
                     echo '<input type="text" name="name" value="', $row['category_name'], '">';
                     echo '</td>';
                     echo '<td>';
@@ -41,7 +41,9 @@
                     echo '</tr>';
                     echo "\n";
                     echo '</table>';
+                    echo '<div class="btn">';
                     echo '<button type="submit" name="Update">更新する</button>';
+                    echo '</div>';
                     echo '</form>';
                 }
             } else {

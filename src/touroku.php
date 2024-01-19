@@ -15,12 +15,27 @@
     <?php require 'select.php'; ?>
     <hr>
     <?php
-    $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo->prepare('insert into Todo(name, create_date, category_id) values(?,current_date,?)');
-    if ($sql->execute([$_POST['name'], $_POST['importance']])) {
-        echo 'Todoを追加しました。';
-    } else {
-        echo 'Todoの追加に失敗しました。';
+    try {
+        $pdo = new PDO($connect, USER, PASS);
+
+        // 1. category_num から category_id を見つけるクエリ
+        $categoryNum = $_POST['importance'];
+        $findCategoryIdQuery = "SELECT category_id FROM category WHERE category_num = ?";
+        $categoryIdStatement = $pdo->prepare($findCategoryIdQuery);
+        $categoryIdStatement->execute([$categoryNum]);
+        $categoryId = $categoryIdStatement->fetchColumn();
+
+        // 2. Todo テーブルに新しいレコードを挿入
+        $insertTodoQuery = "INSERT INTO Todo (name, create_date, category_id) VALUES (?, current_date, ?)";
+        $insertTodoStatement = $pdo->prepare($insertTodoQuery);
+
+        if ($insertTodoStatement->execute([$_POST['name'], $categoryId])) {
+            echo 'Todoを追加しました。';
+        } else {
+            echo 'Todoの追加に失敗しました。';
+        }
+    } catch (PDOException $e) {
+        echo 'エラー：' . $e->getMessage();
     }
     ?>
 </body>

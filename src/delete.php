@@ -38,13 +38,15 @@
                 echo '<td>', $row['name'], '</td>';
                 echo '<td>', $row['create_date'], '</td>';
                 echo '<td>', $row['update_date'], '</td>';
-                echo '<td>', $row['category_name'], '</td>';
+                echo '<td class="star">', $row['category_name'], '</td>';
                 echo '</tr>';
                 echo "\n";
             }
             ?>
         </table>
-        <button type="submit" name="Delete">削除する</button>
+        <div class="btn">
+            <button type="submit" class="btn1">削除する</button>
+        </div>
     </form>
 </body>
 

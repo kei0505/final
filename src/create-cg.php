@@ -15,8 +15,10 @@
     <?php require 'select.php'; ?>
     <hr>
     <form action="create-result-cg.php" method="post">
-        <p>優先度<br><input type="text" name="num"></p>
-        <button type="submit">追加する</button>
+        <p>優先度<br><input type="text" name="num" placeholder="数値を入力してください"></p>
+        <div class="btn">
+            <button type="submit" class="btn1">追加する</button>
+        </div>
     </form>
 </body>
 

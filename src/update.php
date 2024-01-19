@@ -46,19 +46,19 @@
                     echo '<input type="hidden" name="update_date" value="', $row['update_date'], '">';
                     echo '</td> ';
                     echo '<td>';
-                    echo
-                        '<select name="importance">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>';
+                    echo '<select name="importance">';
+                    $sql = $pdo->query('select category_num from category');
+                    foreach ($sql as $row) {
+                        echo '<option value="', $row['category_num'], '">', $row['category_num'], '</option>';
+                    }
+                    echo '</select></p>';
                     echo '</td>';
                     echo '</tr>';
                     echo "\n";
                     echo '</table>';
+                    echo '<div class="btn">';
                     echo '<button type="submit" name="Update">更新する</button>';
-                    echo '</form>';
+                    echo '</div>';
                 }
             } else {
                 echo 'Todoの削除に失敗しました。';
